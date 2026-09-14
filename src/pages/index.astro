@@ -1,49 +1,364 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+// Tema JW Service Guitar - Profesional Landing Page
+const siteTitle = "JW Service Guitar | Bengkel & Servis Gitar Jakarta Barat";
+const siteDescription = "Jasa servis, setting, repair, dan perawatan gitar profesional di Cengkareng, Jakarta Barat.";
+
+// ==== KONTAK (ganti di sini kalau nomor berubah) ====
+const waNumber = "6287748514337";        // format internasional untuk link wa.me
+const waDisplay = "0877-4851-4337";      // format tampilan
+const waLink = `https://wa.me/${waNumber}`;
+
+const services = [
+  { icon: "🎸", title: "Setup & Intonasi", desc: "Setting action, intonasi, dan kenyamanan bermain gitar Anda." },
+  { icon: "🔧", title: "Repair & Restorasi", desc: "Perbaikan neck, fret, bridge, dan restorasi gitar vintage." },
+  { icon: "⚡", title: "Ganti Elektronik", desc: "Upgrade pickup, potensiometer, wiring, dan grounding." },
+  { icon: "🛡️", title: "Perawatan Rutin", desc: "Pembersihan, poles body, dan pelumasan bagian mekanik." },
+];
+
+const keunggulan = [
+  { title: "Teknisi Berpengalaman", desc: "Lebih dari 10 tahun menangani berbagai jenis gitar." },
+  { title: "Garansi Servis", desc: "Setiap pekerjaan bergaransi 7 hari setelah pengambilan." },
+  { title: "Harga Transparan", desc: "Estimasi biaya diberikan sebelum pengerjaan dimulai." },
+];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{siteTitle}</title>
+  <meta name="description" content={siteDescription} />
+  <meta name="theme-color" content="#0b0b0b" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={siteTitle} />
+  <meta property="og:description" content={siteDescription} />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --bg-soft: #141414;
+      --bg-card: #1a1a1a;
+      --border: #262626;
+      --text: #f5f5f5;
+      --text-muted: #a3a3a3;
+      --accent: #f5b301;
+      --accent-hover: #ffc933;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      --max-width: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 11, 11, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: 0.5px;
+    }
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+    .nav-links a { transition: color 0.2s ease; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0b0b0b;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(245, 179, 1, 0.25);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(245, 179, 1, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      max-width: 620px;
+      margin: 0 auto 36px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== SECTION ===== */
+    section { padding: 80px 0; }
+    .section-title {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-title h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .section-title p { color: var(--text-muted); }
+
+    /* ===== GRID ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all 0.25s ease;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ===== KEUNGGULAN ===== */
+    .keunggulan {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ===== CTA ===== */
+    .cta {
+      text-align: center;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0b0b0b 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 60px 24px;
+    }
+    .cta h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 12px;
+    }
+    .cta p {
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--accent); }
+    footer a:hover { text-decoration: underline; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .hero { padding: 64px 0 48px; }
+      section { padding: 56px 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <div class="logo">JW<span>Guitar</span></div>
+      <nav class="nav-links">
+        <a href="#layanan">Layanan</a>
+        <a href="#keunggulan">Keunggulan</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+      <a href={waLink} target="_blank" rel="noopener" class="btn btn-primary">Booking Servis</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">📍 Cengkareng, Jakarta Barat</div>
+      <h1>Servis Gitar <span>Profesional</span><br />untuk Suara Terbaik Anda</h1>
+      <p>
+        Jasa setting, repair, dan perawatan gitar dengan teknisi berpengalaman.
+        Hasil presisi, harga transparan, dan garansi servis.
+      </p>
+      <div class="hero-actions">
+        <a href={waLink} target="_blank" rel="noopener" class="btn btn-primary">Booking Sekarang</a>
+        <a href="#layanan" class="btn btn-outline">Lihat Layanan</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAYANAN -->
+  <section id="layanan">
+    <div class="container">
+      <div class="section-title">
+        <h2>Layanan Kami</h2>
+        <p>Solusi lengkap untuk semua kebutuhan gitar Anda</p>
+      </div>
+      <div class="grid">
+        {services.map((s) => (
+          <div class="card">
+            <div class="card-icon">{s.icon}</div>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- KEUNGGULAN -->
+  <section id="keunggulan" class="keunggulan">
+    <div class="container">
+      <div class="section-title">
+        <h2>Kenapa Pilih Kami?</h2>
+        <p>Komitmen pada kualitas dan kepuasan pelanggan</p>
+      </div>
+      <div class="grid">
+        {keunggulan.map((k) => (
+          <div class="card">
+            <h3>{k.title}</h3>
+            <p>{k.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="kontak">
+    <div class="container">
+      <div class="cta">
+        <h2>Siap Servis Gitar Anda?</h2>
+        <p>Hubungi kami sekarang untuk konsultasi gratis dan estimasi biaya.</p>
+        <a href={waLink} target="_blank" rel="noopener" class="btn btn-primary">
+          💬 Chat via WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© {new Date().getFullYear()} JW Service Guitar — Cengkareng, Jakarta Barat</p>
+      <p style="margin-top: 8px;">
+        📱 WhatsApp: <a href={waLink} target="_blank" rel="noopener">{waDisplay}</a>
+      </p>
+    </div>
+  </footer>
+</body>
 </html>
